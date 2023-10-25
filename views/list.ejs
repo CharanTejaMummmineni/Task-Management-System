@@ -1,0 +1,40 @@
+
+<%- include("header") -%>
+
+    <div id="heading" class="box"><h1><%= kindOfDay %> </h1></div>
+    <h1 class="myself">Hello <%= namr %></h1>
+    <div class="box">
+        <!-- <% for(var i=0; i<listitemarray.length; i++) { %>
+            <div class="item">
+                <input type="checkbox">
+                <p> <%= listitemarray[i].name %> </p>
+            </div>
+        <% } %> -->
+
+        <% listitemarray.forEach(function(item){ %>
+            <form action="/delete" method="post">
+                <div class="item">
+                    <input type="checkbox" name="checkBox" value="<%= item._id %>" onChange="this.form.submit()">
+                    <p> <%= item.name %> </p>
+                </div>
+                <input type="hidden" name="hiddenName" value="<%= kindOfDay %>"></input>
+            </form>
+        <% }) %>
+
+        <form class="item" action="/" method="post">
+            <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+            <button type="submit" name="buttonlist" value="<%= kindOfDay %>">+</button>
+        </form>
+    </div>
+
+
+    <div id="heading" class="box"><a href="http://localhost:3000" class="mylink"><h1>To Do List</h1></a></div>
+    <!-- <% if(kindOfDay === "Work List"){ %>
+        <div id="heading" class="box"><a href="http://localhost:3000" class="mylink"><h1>To Do List</h1></a></div>
+    <% }else{ %>
+        <div id="heading" class="box"><a href="http://localhost:3000/work" class="mylink"><h1>Work List</h1></a></div>
+    <% } %> -->
+
+    <div id="heading" class="box"><a href="http://localhost:3000/check" class="mylink"><h1>Check Layouts</h1></a></div>
+
+<%- include("footer") -%>
